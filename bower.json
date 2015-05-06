@@ -23,14 +23,14 @@
     "tests"
   ],
   "dependencies": {
-    "angular",
-    "angular-bootstrap",
-    "angular-formly",
-    "angular-growl",
-    "angular-sanitize",
-    "bootstrap",
-    "components-font-awesome",
-    "jquery"
+	"angular": null,
+	"angular-bootstrap": null,
+	"angular-formly": null,
+	"angular-growl": null,
+	"angular-sanitize": null,
+	"bootstrap": null,
+	"components-font-awesome": null,
+  	"jquery": null
   },
   "homepage": "https://github.com/mongolar/mongolar-js"
 }
