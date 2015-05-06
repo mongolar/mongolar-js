@@ -173,7 +173,9 @@ mongolar.directive('mongolar', function mongolar($http, $compile, $rootScope, mo
       link : function(scope)
       {
           scope.getTemplate = function(){
-              return mongolarConfig.templates_url + scope.mongolartemplate;
+	      if(scope.mongolartemplate != undefined){
+              	return mongolarConfig.templates_url + scope.mongolartemplate;
+	      }
           }
           if (scope.mongolardyn != undefined){
               scope.$on(
