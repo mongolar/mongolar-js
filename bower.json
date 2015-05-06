@@ -1,6 +1,5 @@
 {
   "name": "mongolar-js",
-  "version": "1.0.0",
   "authors": [
     "Jason Richard Smith <jasonrichrdsmith@gmail.com>"
   ],
@@ -24,7 +23,14 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.22"
+    "angular",
+    "angular-bootstrap",
+    "angular-formly",
+    "angular-growl",
+    "angular-sanitize",
+    "bootstrap",
+    "components-font-awesome",
+    "jquery"
   },
   "homepage": "https://github.com/mongolar/mongolar-js"
 }
