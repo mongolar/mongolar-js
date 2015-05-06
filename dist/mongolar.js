@@ -11,11 +11,13 @@ mongolar.run(function($http) {
 });
 
 mongolar.controller('ContentController', function ContentController($scope, mongolarService) {
-    mongolarService.mongolarHttp($scope).then(function(response) {
-        if(typeof response.data =='object') {
-            angular.extend($scope, response.data);
-        }
-    });
+    if($scope.mongolartype != undefined && $scope.mongolartype != '') {
+        mongolarService.mongolarHttp($scope).then(function(response) {
+            if(typeof response.data =='object') {
+                angular.extend($scope, response.data);
+            }
+    	});
+    }
     $scope.onSubmit = function() {
         var form_data = {};
         console.log($scope);
@@ -30,11 +32,13 @@ mongolar.controller('ContentController', function ContentController($scope, mong
         });
     }
     $scope.dynLoad = function(){
-        mongolarService.mongolarHttp($scope).then(function(response) {
-            if(typeof response.data =='object') {
-                angular.extend($scope, response.data);
-            }
-        });
+    	if($scope.mongolartype != undefined && $scope.mongolartype != '') {
+            mongolarService.mongolarHttp($scope).then(function(response) {
+                if(typeof response.data =='object') {
+                    angular.extend($scope, response.data);
+                }
+            });
+	}
     }
     $scope.scopeSend =  function($path, $value) {
         mongolarService.mongolarScopeSend($path, $value);
@@ -48,7 +52,6 @@ mongolar.factory('mongolarService', function($http, growl, mongolarConfig) {
             if($arguments.mongolarid != undefined){
                 argument = argument + '/' + $arguments.mongolarid;
             }
-	    console.log($arguments)
             var promise = $http.get(mongolarConfig.mongolar_url + argument).success(function(response){
                 return response;
             });
@@ -176,7 +179,7 @@ mongolar.directive('mongolar', function mongolar($http, $compile, $rootScope, mo
               scope.$on(
                   scope.mongolardyn, function (event, data) {
                       scope.mongolartype = data.dyn_control;
-                      scope.mongolar = data.dyn_id;
+                      scope.mongolarid = data.dyn_id;
                       scope.mongolartemplate = data.dyn_template;
                       scope.dynLoad();
                   }
