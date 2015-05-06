@@ -1,0 +1,30 @@
+{
+  "name": "mongolar-js",
+  "version": "1.0.0",
+  "authors": [
+    "Jason Richard Smith <jasonrichrdsmith@gmail.com>"
+  ],
+  "main": [
+    "dist/mongolor.js"
+  ],
+  "description": "This is the core AngularJS script for Mongolar",
+  "keywords": [
+    "AngularJs",
+    "mongolar",
+    "mongodb",
+    "golang"
+  ],
+  "license": "GPL-3.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.22"
+  },
+  "homepage": "https://github.com/mongolar/mongolar-js"
+}
