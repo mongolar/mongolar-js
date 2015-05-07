@@ -20,11 +20,13 @@ mongolar.controller('ContentController', function ContentController($scope, mong
     }
     $scope.onSubmit = function() {
         var form_data = {};
+	form_data.mongolartype = $scope.mongolartype
+	form_data.mongolarid = $scope.mongolarid
         console.log($scope);
-        $scope.mongolar_content.formFields.forEach(function(field){
-            form_data[field.key] = $scope.mongolar_content.formData[field.key];
+        $scope.form.formFields.forEach(function(field){
+            form_data[field.key] = $scope.form.formData[field.key];
         });
-        form_data.form_id = $scope.mongolar_content.formOptions.uniqueFormId;
+        form_data.form_id = $scope.form.formId;
         mongolarService.mongolarPost(form_data).then(function(response) {
             if(typeof response.data =='object') {
                 angular.extend($scope, response.data);
@@ -58,7 +60,11 @@ mongolar.factory('mongolarService', function($http, growl, mongolarConfig) {
             return promise;
         },
         mongolarPost: function($arguments) {
-            var promise = $http.post(mongolarConfig.mongolar_url + "form", $arguments).success(function(response){
+            var argument = $arguments.mongolartype;
+            if($arguments.mongolarid != undefined){
+                argument = argument + '/' + $arguments.mongolarid;
+            }
+            var promise = $http.post(mongolarConfig.mongolar_url + argument, $arguments).success(function(response){
                 return response;
             });
             return promise;
