@@ -1,4 +1,3 @@
-
 mongolar.config(["$httpProvider", function ($httpProvider) {
     $httpProvider.interceptors.push('messageCatcher');
     $httpProvider.interceptors.push('reloadCatcher');
@@ -15,6 +14,7 @@ mongolar.controller('ContentController', function ContentController($scope, mong
         mongolarService.mongolarHttp($scope).then(function(response) {
             if(typeof response.data =='object') {
                 angular.extend($scope, response.data);
+		$scope.mongolaritterance = 0;
             }
     	});
     }
@@ -173,7 +173,8 @@ mongolar.directive('mongolar', function mongolar($http, $compile, $rootScope, mo
       'mongolarid' : '@',
       'mongolartemplate' : '@',
       'mongolartype' : '@',
-      'mongolardyn' : '@'
+      'mongolardyn' : '@',
+      'mongolaritterance': '@'
     },
     template: '<div ng-include = "getTemplate()" ng-hide="hide"></div>',
       link : function(scope)
@@ -186,10 +187,11 @@ mongolar.directive('mongolar', function mongolar($http, $compile, $rootScope, mo
           if (scope.mongolardyn != undefined){
               scope.$on(
                   scope.mongolardyn, function (event, data) {
-                      scope.mongolartype = data.dyn_control;
-                      scope.mongolarid = data.dyn_id;
-                      scope.mongolartemplate = data.dyn_template;
-                      scope.dynLoad();
+		      scope.mongolartype = data.dyn_control;
+		      scope.mongolarid = data.dyn_id;
+		      scope.mongolartemplate = data.dyn_template;
+		      scope.mongolaritterance++ //Force reload
+		      scope.dynLoad();
                   }
               );
           }
