@@ -32,7 +32,8 @@
 	"angular-ui-sortable": "0.13.3",
 	"bootstrap": "~3.3.4",
   	"jquery": "2.1.4",
-	"jquery-ui": "1.11.4"
+	"jquery-ui": "1.11.4",
+	"components-font-awesome": "4.3.0"
   },
   "homepage": "https://github.com/mongolar/mongolar-js"
 }
