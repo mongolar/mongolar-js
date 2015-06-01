@@ -88,10 +88,10 @@ mongolar.factory('mongolarService', function($http, growl, mongolarConfig) {
 mongolar.factory('queryCatcher', function($injector) {
     var queryCatcher = {
         response: function(response) {
-            if(typeof response.data.mongolar_content =='object') {
-                if('query_parameters' in response.data.mongolar_content){
+            if(typeof response.data =='object') {
+                if('mongolar_slug' in response.data){
                     var http = $injector.get('$http');
-                    http.defaults.headers.common.QueryParameters = response.data.mongolar_content.query_parameters;
+                    http.defaults.headers.common.Slug = response.data.mongolar_slug;
                 }
             }
             return response;
