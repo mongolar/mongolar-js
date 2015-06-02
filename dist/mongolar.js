@@ -22,7 +22,6 @@ mongolar.controller('ContentController', function ContentController($scope, mong
         var form_data = {};
 	form_data.mongolartype = $scope.mongolartype
 	form_data.mongolarid = $scope.mongolarid
-        console.log($scope);
         $scope.form.formFields.forEach(function(field){
             form_data[field.key] = $scope.form.formData[field.key];
         });
@@ -174,11 +173,13 @@ mongolar.directive('mongolar', function mongolar($http, $compile, $rootScope, mo
       'mongolartemplate' : '@',
       'mongolartype' : '@',
       'mongolardyn' : '@',
-      'mongolaritterance': '@'
+      'mongolaritterance': '@',
+      'mongolarclasses': '@'
     },
     template: '<div ng-include = "getTemplate()" ng-hide="hide"></div>',
-      link : function(scope)
+      link : function(scope, element, attrs)
       {
+      	  element.addClass(scope.mongolarclasses);
           scope.getTemplate = function(){
 	      if(scope.mongolartemplate != undefined){
               	return mongolarConfig.templates_url + scope.mongolartemplate;
